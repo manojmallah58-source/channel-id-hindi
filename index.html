@@ -2,402 +2,492 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cricket Superfans</title>
-  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>CRICKET SUPER FANS - Premium Live</title>
+  
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
-    /* NOTE: The existing <style> block is kept, but the new structure below uses inline styles for the main content cards. */
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #0a0a0a;
-      font-family: 'Poppins', sans-serif;
-      overflow-x: hidden;
-      color: #e0e0e0;
+    :root {
+      --bg-dark: #000000; 
+      --bg-card: #0c0c0c; 
+      --gold-main: #FFD700;
+      --gold-glow: rgba(255, 215, 0, 0.3); 
+      --text-white: #e0e0e0; 
+      --text-gray: #888888;
+      --border-color: rgba(255, 255, 255, 0.05); 
+      --accent-red: #ff4d4d; 
+      --gradient-bg-top: #0a0a0a;
+      --gradient-bg-bottom: #000000;
     }
+
+    * { 
+      box-sizing: border-box; 
+      -webkit-tap-highlight-color: transparent; 
+      outline: none; 
+      user-select: none; 
+      -webkit-touch-callout: none;
+      -webkit-text-size-adjust: 100%;
+    }
+    
+    body {
+      margin: 0; padding: 0;
+      background-color: var(--bg-dark);
+      background-image: radial-gradient(circle at top center, var(--gradient-bg-top), var(--gradient-bg-bottom) 70%); 
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-white);
+      padding-bottom: 80px;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body::-webkit-scrollbar { width: 8px; }
+    body::-webkit-scrollbar-track { background: var(--bg-dark); }
+    body::-webkit-scrollbar-thumb { background-color: #222; border-radius: 10px; border: 2px solid var(--bg-dark); }
+    body::-webkit-scrollbar-thumb:hover { background-color: #444; }
 
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 70px;
-      background: rgba(10, 10, 10, 0.85);
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      z-index: 9999;
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+      position: fixed; top: 0; width: 100%; height: 60px; 
+      background: rgba(0, 0, 0, 0.98); 
+      backdrop-filter: blur(25px); 
+      border-bottom: 1px solid var(--border-color);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 16px;
+      z-index: 1000;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.9); 
     }
 
-    header img {
-      height: 65%;
-      filter: drop-shadow(0 0 8px rgba(29, 185, 84, 0.3));
-      transition: filter 0.3s ease;
+    .menu-icon { font-size: 26px; color: #fff; cursor: pointer; transition: 0.2s transform, 0.2s color; }
+    .menu-icon:active { color: var(--gold-main); transform: scale(0.9); }
+    
+    .logo-container { 
+      position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); 
+      display: flex; align-items: center; gap: 6px;
+    }
+    .logo-text { 
+      font-family: 'Rajdhani'; font-weight: 800; font-size: 20px;
+      color: #fff; letter-spacing: 1.5px;
+      text-shadow: 0 0 8px rgba(255,215,0,0.2); 
+    }
+    .logo-text span { color: var(--gold-main); }
+
+    .header-live {
+      display: flex; align-items: center; gap: 7px;
+      background: rgba(255, 77, 77, 0.15); 
+      border: 1px solid rgba(255, 77, 77, 0.3);
+      padding: 4px 10px; border-radius: 20px;
+      box-shadow: 0 0 12px rgba(255, 77, 77, 0.3);
+    }
+    .h-dot { 
+      width: 8px; height: 8px; background: var(--accent-red); border-radius: 50%; 
+      box-shadow: 0 0 8px var(--accent-red), 0 0 16px rgba(255,0,0,0.4);
+      animation: blink 1s infinite cubic-bezier(0.4, 0, 0.6, 1);
+    }
+    .h-text { font-size: 11px; font-weight: 700; color: var(--accent-red); font-family: 'Rajdhani'; letter-spacing: 0.8px; text-transform: uppercase; }
+
+    .video-wrapper {
+      margin-top: 60px;
+      width: 100%; position: relative;
+      background: #000;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.9); 
+      border-bottom-left-radius: 15px; 
+      border-bottom-right-radius: 15px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.02); 
+    }
+    .video-container {
+      width: 100%; aspect-ratio: 16/9;
+      position: relative; overflow: hidden;
+      background-color: #000;
+    }
+    .video-container iframe { 
+      width: 100%; height: 100%; border: none; display: block; 
+    }
+    
+    .video-bar { 
+      height: 4px;
+      width: 100%; 
+      background: linear-gradient(90deg, transparent 10%, #FFD700, #e6c200, transparent 90%); 
+      opacity: 0.7; 
+      box-shadow: 0 0 12px var(--gold-glow);
     }
 
-    header:hover img {
-      filter: drop-shadow(0 0 12px rgba(29, 185, 84, 0.5));
-    }
-
-    /* 🔔 Popup Styles */
-    .popup-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10002;
-    }
-
-    .popup-box {
-      width: 320px;
-      background: rgba(20, 20, 30, 0.6);
-      border: 1px solid rgba(173, 216, 230, 0.25);
-      border-radius: 20px;
-      backdrop-filter: blur(15px);
-      box-shadow: 0 0 25px rgba(0, 255, 255, 0.4), 0 0 80px rgba(173, 216, 230, 0.15);
-      padding: 2rem 1.5rem;
-      text-align: center;
-      animation: fadeIn 0.5s ease forwards;
+    .ticker-wrap {
+      background: var(--bg-card); 
+      height: 35px;
+      overflow: hidden;
+      display: flex; align-items: center; border-bottom: 1px solid var(--border-color);
       position: relative;
+      padding: 0 12px;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.5); 
+    }
+    .ticker-wrap::before, .ticker-wrap::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 35px; z-index: 2;
+      pointer-events: none;
+    }
+    .ticker-wrap::before { left: 0; background: linear-gradient(90deg, var(--bg-card) 20%, transparent); }
+    .ticker-wrap::after { right: 0; background: linear-gradient(-90deg, var(--bg-card) 20%, transparent); }
+    
+    .ticker-text {
+      color: var(--gold-main); font-weight: 600; font-family: 'Outfit'; font-size: 13px; 
+      letter-spacing: 0.8px; text-transform: uppercase;
+      white-space: nowrap; animation: scroll 20s linear infinite; 
+      padding-left: 100%;
+      text-shadow: 0 0 4px rgba(255,215,0,0.1);
+    }
+    @keyframes scroll { 100% { transform: translateX(-100%); } }
+
+    .action-section { 
+      padding: 25px 16px; 
+      max-width: 600px; 
+      margin: 0 auto;
     }
 
-    @keyframes fadeIn {
-      from { transform: scale(0.95); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .popup-header {
-      font-size: 2rem;
-      font-weight: 700;
-      background: linear-gradient(45deg, #00eaff, #bd00ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 0.4rem;
-      text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
-    }
-
-    .popup-subtitle {
-      font-size: 1rem;
-      color: #aaa;
-      margin-bottom: 1.2rem;
-    }
-
-    .popup-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-    }
-
-    .popup-buttons a {
-      text-decoration: none;
-    }
-
-    .popup-btn {
-      padding: 0.8rem;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 1rem;
-      color: #fff;
-      cursor: pointer;
-      transition: all 0.35s ease;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+    .daily-views-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 15px; 
+      padding: 15px 20px; 
+      margin-bottom: 20px; 
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
       position: relative;
       overflow: hidden;
     }
-
-    .join-btn {
-      background: linear-gradient(135deg, #00eaff, #9c00ff);
-      box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
-    }
-
-    .already-btn {
-      background: rgba(255,255,255,0.05);
-    }
-
-    .close-btn {
+    .daily-views-card::before {
+      content: '';
       position: absolute;
-      top: 12px;
-      right: 18px;
-      font-size: 1.3rem;
-      color: #00eaff;
-      background: none;
-      border: none;
-      cursor: pointer;
+      top: -10px; left: -10px; width: 40px; height: 40px;
+      background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+      pointer-events: none;
+      transform: rotate(45deg);
     }
+    .daily-views-card:active { transform: translateY(1px); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
 
-    .video-container {
-      width: 100vw;
-      aspect-ratio: 16/9;
-      background: #000;
-      margin-top: 70px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-    }
-
-    .video-container iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-    }
-    
-    .menu-icon {
-      position: absolute; left: 16px; color: #fff; font-size: 30px; cursor: pointer;
-
-}
-    
-    .menu-header {
-      font-size: 20px;
+    .daily-views-card .icon { font-size: 18px; color: var(--gold-main); margin-right: 10px; }
+    .daily-views-card .text { 
+      flex-grow: 1;
+      font-size: 12px; 
+      color: var(--text-gray); 
+      text-transform: uppercase; 
+      letter-spacing: 0.7px; 
       font-weight: 600;
-      text-align: center;
-      padding: 15px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.08);
-      color: #fff;
     }
-    
-    .overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 10000;
-      display: none;
+    .daily-views-card .value { 
+      font-size: 20px; 
+      font-weight: 700; 
+      color: var(--text-white); 
+      font-family: 'Rajdhani';
     }
 
-    .overlay.show {
-      display: block;
+    .btn-group { display: flex; flex-direction: column; gap: 15px; }
+
+    .btn-main {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; 
+      border-radius: 14px; 
+      text-decoration: none;
+      background: linear-gradient(45deg, #FFD700, #ffc800); 
+      box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
     }
+    .btn-main::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent 50%, rgba(255,255,255,0.1));
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .btn-main:active { 
+      transform: scale(0.98); 
+      box-shadow: 0 3px 10px rgba(255, 215, 0, 0.2); 
+    }
+    .btn-main:active::before { opacity: 1; }
     
-    /* Sidebar Styles */
+    .btn-content { display: flex; align-items: center; gap: 12px; }
+    .btn-icon-circle { 
+      width: 36px; height: 36px; background: rgba(0,0,0,0.1); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; 
+      box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
+    }
+    .btn-icon-circle i { color: #000; font-size: 20px; margin-right: 1px; margin-top: 1px;} 
+    
+    .btn-text h3 { margin: 0; color: #000; font-size: 15px; font-weight: 700; font-family: 'Rajdhani'; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-text p { margin: 0; color: #333; font-size: 10px; font-weight: 600; text-transform: uppercase; }
+    .btn-arrow { color: #000; font-size: 22px; }
+
+    .btn-secondary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .btn-sec {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 12px; border-radius: 12px;
+      text-decoration: none;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.3);
+      backdrop-filter: blur(3px);
+    }
+    .btn-sec:active { 
+      background: #1a1a1a; 
+      transform: translateY(1px); 
+      box-shadow: 0 1px 5px rgba(0,0,0,0.15); 
+    }
+    .btn-sec i { font-size: 18px; color: #999; }
+    .btn-sec span { font-size: 12px; color: #ccc; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.98);
+      z-index: 9999; display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: 0.4s ease-in-out; backdrop-filter: blur(20px);
+    }
+    .modal-overlay.active { opacity: 1; pointer-events: auto; }
+
+    .modal-box {
+      width: 90%; max-width: 340px;
+      background: linear-gradient(135deg, #151515, #080808);
+      border: 1px solid #333;
+      border-radius: 25px;
+      padding: 30px 25px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      transform: scale(0.85); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .modal-overlay.active .modal-box { transform: scale(1); }
+
+    .pop-icon { 
+      width: 60px; height: 60px; background: rgba(255, 215, 0, 0.15);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 18px;
+      box-shadow: 0 0 15px rgba(255,215,0,0.3);
+    }
+    .pop-icon i { font-size: 32px; color: var(--gold-main); text-shadow: 0 0 6px var(--gold-main); }
+    
+    .pop-title { 
+      color: #fff; font-size: 20px; font-weight: 800; margin: 0 0 8px; 
+      font-family: 'Rajdhani'; letter-spacing: 0.7px; text-transform: uppercase;
+    }
+    .pop-desc { color: #aaa; font-size: 13px; margin-bottom: 25px; line-height: 1.5; }
+
+    .pop-btn {
+      display: block; width: 100%; padding: 14px; border-radius: 12px;
+      text-decoration: none; font-weight: 700; font-size: 14px; 
+      transition: 0.2s ease; cursor: pointer;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .pb-join { 
+      background: var(--gold-main); color: #000; margin-bottom: 10px; 
+      box-shadow: 0 4px 15px rgba(255,215,0,0.3); 
+    }
+    .pb-join:active { background: #e6c200; transform: translateY(1px); box-shadow: 0 2px 8px rgba(255,215,0,0.2); }
+
+    .pb-close { 
+      background: transparent; color: #777; border: 1px solid #3a3a3a; 
+    }
+    .pb-close:active { background: #222; color: #ccc; border-color: #444; transform: translateY(1px); }
+
     .sidebar {
-      position: fixed; top: 0; left: -300px; width: 280px; height: 100%;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(20px);
-      border-right: 1px solid rgba(255,255,255,0.2);
-      color: #fff; z-index: 10001; transition: left 0.5s ease;
-      padding-top: 80px; box-shadow: 4px 0 15px rgba(0,0,0,0.4);
-      border-top-right-radius: 12px; border-bottom-right-radius: 12px;
+      position: fixed; left: -100%; top: 0; width: 280px; height: 100%;
+      background: linear-gradient(180deg, #181818, #050505);
+      z-index: 5000; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-right: 1px solid #282828;
+      box-shadow: 6px 0 25px rgba(0,0,0,0.7);
     }
     .sidebar.open { left: 0; }
-    .sidebar a {
-      display: block; padding: 15px 24px; color: #fff; text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      font-weight: 500; font-size: 16px;
-      transition: background 0.3s, padding-left 0.3s;
+    .sb-header { padding: 30px 25px; border-bottom: 1px solid #282828; background: #0e0e0e; }
+    .sb-logo { 
+      font-family: 'Rajdhani'; font-size: 24px; font-weight: 800; color: #fff; 
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 10px rgba(255,215,0,0.2);
     }
-    .counter-box {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.08);
-      padding: 12px;
-      border-radius: 16px;
-      box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
-      margin-top: 1rem;
+    .sb-logo span { color: var(--gold-main); }
+
+    .sb-link {
+      display: flex; align-items: center; gap: 16px; padding: 18px 25px;
+      color: #b0b0b0; text-decoration: none; font-size: 14px; font-weight: 500;
+      transition: 0.2s ease; border-bottom: 1px solid #1f1f1f;
+      text-transform: uppercase; letter-spacing: 0.5px;
     }
+    .sb-link:last-child { border-bottom: none; }
+    .sb-link:active { 
+      background: #202020; color: var(--gold-main); 
+      transform: translateX(5px);
+    }
+    .sb-link i { color: #777; font-size: 20px; transition: 0.2s; }
+    .sb-link:active i { color: var(--gold-main); }
     
-    .counter-box img {
-      height: 48px;
+    .overlay { 
+      position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 4999; 
+      opacity: 0; pointer-events: none; transition: 0.3s ease; 
+    }
+    .overlay.active { opacity: 1; pointer-events: auto; }
+
+    @keyframes blink { 
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
     }
 
+    @media (min-width: 768px) {
+      header { padding: 0 30px; height: 70px; }
+      .logo-text { font-size: 24px; }
+      .h-text { font-size: 12px; }
+      .video-wrapper { margin-top: 70px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; }
+      .ticker-wrap { height: 40px; padding: 0 20px; }
+      .ticker-text { font-size: 14px; }
+      .action-section { padding: 35px 25px; max-width: 650px; }
+      .daily-views-card { padding: 18px 25px; margin-bottom: 25px; }
+      .daily-views-card .icon { font-size: 20px; }
+      .daily-views-card .text { font-size: 13px; }
+      .daily-views-card .value { font-size: 24px; }
+      .btn-main { padding: 18px 25px; border-radius: 16px; }
+      .btn-icon-circle { width: 40px; height: 40px; }
+      .btn-icon-circle i { font-size: 22px; }
+      .btn-text h3 { font-size: 16px; }
+      .btn-text p { font-size: 11px; }
+      .btn-arrow { font-size: 24px; }
+      .btn-secondary-grid { gap: 20px; }
+      .btn-sec { padding: 14px; border-radius: 14px; }
+      .btn-sec i { font-size: 20px; }
+      .btn-sec span { font-size: 13px; }
+      .sidebar { width: 320px; }
+      .sb-header { padding: 35px 30px; }
+      .sb-logo { font-size: 26px; }
+      .sb-link { padding: 20px 30px; font-size: 15px; }
+      .sb-link i { font-size: 22px; }
+    }
   </style>
 </head>
 <body>
-<div class="popup-overlay" id="visitorPopup" style="display:none;">
-  <div class="popup-box">
-    <button class="close-btn" onclick="closeVisitorPopup()">×</button>
-    <div class="popup-header">Total Visitors</div>
-    <div class="popup-subtitle">Users Live On Web</div>
-    <div class="counter-box">
-      <img src="https://visit-counter.vercel.app/counter.png?page=allrounder.com&s=40&c=00ff00&bg=00000000&no=10&ff=digi&tb=&ta=" alt="Visitor Count" />
+
+  <div class="modal-overlay" id="popup">
+    <div class="modal-box">
+      <div class="pop-icon"><i class="material-icons">telegram</i></div>
+      <div class="pop-title">Join for Backup Links!</div>
+      <div class="pop-desc">Don't miss a single ball. Join our official channel for HD links and live updates.</div>
+      <a href="#" id="pop-link" class="pop-btn pb-join">Join Telegram Channel</a>
+      <button class="pop-btn pb-close" onclick="closePopup()">I'm already in</button>
     </div>
   </div>
-</div>
-<div class="popup-overlay" id="popup">
-  <div class="popup-box">
-    <button class="close-btn" onclick="closePopup()">×</button>
-    <div class="popup-header">Support Us!</div>
-    <div class="popup-subtitle">Join our Telegram for latest updates.</div>
-    <div class="popup-buttons">
-      <a href="https://t.me/+9eqdUpSA22FmMTFl" target="_blank" class="popup-btn join-btn">Join Now</a>
-      <button class="popup-btn already-btn" onclick="closePopup()">Already Joined</button>
-    </div>
-  </div>
-</div>
+
   <header>
-<span class="material-icons menu-icon" onclick="toggleSidebar()">menu</span>
-    <img src="https://i.ibb.co/2Yc6NMCm/ei-1771940729359-removebg-preview.png" alt="Logo">
+    <div class="menu-icon material-icons" onclick="toggleMenu()">notes</div>
+    <div class="logo-container">
+      <span class="logo-text">CRICKET <span> SUPER FANS</span></span>
+    </div>
+    <div class="header-live">
+      <div class="h-dot"></div> <span class="h-text">LIVE</span>
+    </div>
   </header>
-<div class="video-container">
-  <iframe
-    src="https://cricket-yoddha-channel-1.vercel.app/"
-    </div>"
-    frameborder="0"
-    allowfullscreen
-    allow="autoplay; encrypted-media"
-    sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
-  ></iframe>
-</div>
 
-<div style="background:#000; padding:20px 15px; font-family:'Poppins', sans-serif; color:#fff;">
+  <div class="sidebar" id="sidebar">
+    <div class="sb-header">
+      <div class="sb-logo">CRICKET<span>SUPER FANS</span></div>
+    </div>
+    <a href="#" id="side-tg" class="sb-link"><i class="material-icons">send</i> Join Telegram</a>
+    <a href="#" id="side-instagram" class="sb-link"><i class="material-icons">support_agent</i> Customer Support</a>
+    <a href="javascript:location.reload()" class="sb-link"><i class="material-icons">refresh</i> Refresh Page</a>
+    <a href="javascript:sharePage()" class="sb-link"><i class="material-icons">share</i> Share App</a>
+  </div>
+  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-    <div style="
-        background:#212121;
-        padding:15px 20px;
-        border-radius:12px;
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        margin-bottom:20px;
-    ">
-        <h2 style="margin:0; font-size:20px; font-weight:600;">STAR SPORTS</h2>
+  <div class="video-wrapper">
+    <div class="video-container">
+      <iframe src="https://cricket-yoddha.vercel.app/?url=https://jiotvpllive.cdn.jio.com/bpk-tv/Star_Sports_1_Hindi_BTS/output/index.mpd?name=Star_Sports_1_Hindi&keyId=8ea9b607549252068e260a5f4d7dd321&key=350c0aaffedf51cc1502e9543c7c885e&cookie=__hdnea__=st=1773493314~exp=1773579714~acl=/*~hmac=5a87c711c45d0f448b2d5825fa96e1559f77d4896e47942ae55f56b074b9ad65" allowfullscreen allow="autoplay; encrypted-media" scrolling="no"></iframe>
+    </div>
+    <div class="video-bar"></div>
+  </div>
 
-        <div style="
-            background:#d1001f;
-            padding:6px 16px;
-            border-radius:8px;
-            font-size:14px;
-            font-weight:600;
-            display:flex;
-            align-items:center;
-        ">
-            🔴 LIVE
+  <div class="ticker-wrap">
+    <div class="ticker-text">
+       WELCOME TO CRICKET SUPER FANS 🏏 | JOIN TELEGRAM FOR MORE LINKS 🔗 | SHARE THIS LINK WITH FRIENDS 🔥 | NO BUFFERING HD STREAM
+    </div>
+  </div>
+
+  <div class="action-section">
+    
+    <div class="daily-views-card">
+      <i class="material-icons icon">bar_chart</i>
+      <span class="text">Daily Views</span>
+      <span class="value" id="total-views-count">...</span>
+    </div>
+
+    <div class="btn-group">
+      <a href="#" id="main-btn" class="btn-main">
+        <div class="btn-content">
+          <div class="btn-icon-circle"><i class="material-icons">send</i></div>
+          <div class="btn-text">
+            <h3>Join Telegram</h3>
+            <p>For Link Backups & Updates</p>
+          </div>
         </div>
-    </div>
+        <i class="material-icons btn-arrow">chevron_right</i>
+      </a>
 
-<div style="
-        background:#212121;
-        padding:18px 20px;
-        border-radius:12px;
-        margin-bottom:20px;
-    ">
-        <p style="
-            margin:0 0 15px;
-            font-size:16px;
-            font-weight:500;
-            color:#c9c9c9;
-            text-align:center;
-        ">
-            🔔 Follow us for Updates!
-        </p>
-
-<a href="https://t.me/+9eqdUpSA22FmMTFl" target="_blank" style="
-            display:block;
-            background:#d1001f;
-            padding:14px;
-            text-align:center;
-            border-radius:10px;
-            text-decoration:none;
-            color:#fff;
-            font-size:16px;
-            font-weight:600;
-        ">
-            Click Here To Join Telegram
+      <div class="btn-secondary-grid">
+        <a href="javascript:void(0)" onclick="sharePage()" class="btn-sec">
+          <i class="material-icons">share</i>
+          <span>Share</span>
         </a>
+        <a href="javascript:location.reload()" class="btn-sec">
+          <i class="material-icons">refresh</i>
+          <span>Refresh</span>
+        </a>
+      </div>
     </div>
 
-    <div style="
-        background:#212121;
-        padding:18px 20px;
-        border-radius:12px;
-    ">
-        <p style="
-            margin:0 0 15px;
-            font-size:16px;
-            font-weight:500;
-            color:#c9c9c9;
-            text-align:center;
-        ">
-            🔗 Copy Link & Share
-        </p>
+  </div>
 
-        <button onclick="sharePageLink()" style="
-            display:block;
-            width: 100%;
-            border: none;
-            cursor: pointer;
-            background:#d1001f;
-            padding:14px;
-            text-align:center;
-            border-radius:10px;
-            text-decoration:none;
-            color:#fff;
-            font-size:16px;
-            font-weight:600;
-            font-family:'Poppins', sans-serif;
-        ">
-            Click Here To Share This Page Link
-        </button>
-    </div>
-</div>
-<div class="sidebar" id="sidebar">
-  <div class="menu-header">MENU</div>
-  <a href="https://t.me/+9eqdUpSA22FmMTFl" target="_blank"> Join Our Telegram</a>
-  <a href="https://t.me/+rwZKMV0-L8wyOTll" target="_blank"> Contact Us</a>
-  <a href="https://t.me/+9eqdUpSA22FmMTFl" target="_blank">Copyright</a>
-<a href="#" onclick="showVisitorPopup()">Total Visitor</a>
-</div>
-<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
-
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-  <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
   <script>
-    const jsonUrl = 'https://raw.githubusercontent.com/StmpupCricket/Star-Sports-Hindi-json/refs/heads/main/data.json';
-    const telegramLink = 'https://t.me/Cricket_SuperFans';
+    // ================= CONFIG =================
+    const WEBSITE_ID = "channel_super_fans"; 
+    const TELEGRAM_LINK = "https://t.me/+9eqdUpSA22FmMTFl";
+    const INSTAGRAM_LINK = "https://www.instagram.com/cricket_yoddha?igsh=MWpoZDltdjZzYnRncw=="; 
+    // ==========================================
 
-    function toggleSidebar() {
+    document.getElementById('pop-link').href = TELEGRAM_LINK;
+    document.getElementById('side-tg').href = TELEGRAM_LINK;
+    document.getElementById('main-btn').href = TELEGRAM_LINK;
+    document.getElementById('side-instagram').href = INSTAGRAM_LINK;
 
-document.getElementById('sidebar').classList.toggle('open');
-    document.getElementById('overlay').classList.toggle('show');
-  }
-function closePopup() {
-  document.getElementById('popup').style.display = 'none';
-}
-function showVisitorPopup() {
-    const popup = document.getElementById("visitorPopup");
-    popup.style.display = "flex";
-    setTimeout(() => {
-      popup.querySelector('.popup-box').style.opacity = '1';
-    }, 10);
-  }
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('overlay').classList.toggle('active');
+    }
 
-  function closeVisitorPopup() {
-    const popup = document.getElementById("visitorPopup");
-    popup.querySelector('.popup-box').style.opacity = '0';
-    setTimeout(() => {
-      popup.style.display = "none";
-    }, 300);
-  }
-
-// SHARE FUNCTIONALITY
-async function sharePageLink() {
-    const shareData = {
-        title: 'Knowledge DTV  - Live Match',
-        text: 'Watch Live Cricket Match here: Cricket Superfans ! 🏏\n\nJoin our Telegram Channel for updates: ' + telegramLink,
-        url: window.location.href,
+    window.onload = () => {
+      // Fake view counter for aesthetics since Firebase is not initialized
+      document.getElementById('total-views-count').innerText = Math.floor(Math.random() * (9500 - 5000) + 5000);
+      
+      setTimeout(() => {
+        if(!sessionStorage.getItem('pop_shown_' + WEBSITE_ID)) {
+          document.getElementById('popup').classList.add('active');
+        }
+      }, 2500);
     };
 
-    try {
-        if (navigator.share) {
-            await navigator.share(shareData);
-        } else {
-            await navigator.clipboard.writeText(shareData.text + '\n\nLink: ' + shareData.url);
-
-alert("Link and sharing text copied! You can now share it anywhere.");
-        }
-    } catch (err) {
-        console.error('Share failed:', err);
-        alert('There was an issue sharing. Please copy the link manually.');
+    function closePopup() {
+      document.getElementById('popup').classList.remove('active');
+      sessionStorage.setItem('pop_shown_' + WEBSITE_ID, 'true');
     }
-}
+
+    async function sharePage() {
+      if(navigator.share) {
+        try {
+          await navigator.share({
+            title: 'Watch Live Cricket HD', 
+            text: 'Watch Live Cricket HD without buffering on Cricket Super Fans!', 
+            url: window.location.href
+          });
+        } catch (err) {}
+      } else {
+        alert("Sharing not supported on this browser. Copy the URL to share!");
+      }
+    }
   </script>
 </body>
 </html>
