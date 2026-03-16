@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>CRICKET SUPER FANS - Premium Live</title>
+  <title>CRICKET SUPERFANS - Premium Live</title>
   
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg-dark: #000000; 
-      --bg-card: #0c0c0c; 
+      --bg-dark: #000000;
+      --bg-card: #0c0c0c;
       --gold-main: #FFD700;
-      --gold-glow: rgba(255, 215, 0, 0.3); 
-      --text-white: #e0e0e0; 
+      --gold-glow: rgba(255, 215, 0, 0.3);
+      --text-white: #e0e0e0;
       --text-gray: #888888;
-      --border-color: rgba(255, 255, 255, 0.05); 
-      --accent-red: #ff4d4d; 
+      --border-color: rgba(255, 255, 255, 0.05);
+      --accent-red: #ff4d4d;
       --gradient-bg-top: #0a0a0a;
       --gradient-bg-bottom: #000000;
     }
@@ -34,7 +34,7 @@
     body {
       margin: 0; padding: 0;
       background-color: var(--bg-dark);
-      background-image: radial-gradient(circle at top center, var(--gradient-bg-top), var(--gradient-bg-bottom) 70%); 
+      background-image: radial-gradient(circle at top center, var(--gradient-bg-top), var(--gradient-bg-bottom) 70%);
       font-family: 'Outfit', sans-serif;
       color: var(--text-white);
       padding-bottom: 80px;
@@ -43,20 +43,15 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    body::-webkit-scrollbar { width: 8px; }
-    body::-webkit-scrollbar-track { background: var(--bg-dark); }
-    body::-webkit-scrollbar-thumb { background-color: #222; border-radius: 10px; border: 2px solid var(--bg-dark); }
-    body::-webkit-scrollbar-thumb:hover { background-color: #444; }
-
     header {
-      position: fixed; top: 0; width: 100%; height: 60px; 
-      background: rgba(0, 0, 0, 0.98); 
-      backdrop-filter: blur(25px); 
+      position: fixed; top: 0; width: 100%; height: 60px;
+      background: rgba(0, 0, 0, 0.98);
+      backdrop-filter: blur(25px);
       border-bottom: 1px solid var(--border-color);
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 16px;
       z-index: 1000;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.9); 
+      box-shadow: 0 10px 40px rgba(0,0,0,0.9);
     }
 
     .menu-icon { font-size: 26px; color: #fff; cursor: pointer; transition: 0.2s transform, 0.2s color; }
@@ -69,13 +64,13 @@
     .logo-text { 
       font-family: 'Rajdhani'; font-weight: 800; font-size: 20px;
       color: #fff; letter-spacing: 1.5px;
-      text-shadow: 0 0 8px rgba(255,215,0,0.2); 
+      text-shadow: 0 0 8px rgba(255,215,0,0.2);
     }
     .logo-text span { color: var(--gold-main); }
 
     .header-live {
       display: flex; align-items: center; gap: 7px;
-      background: rgba(255, 77, 77, 0.15); 
+      background: rgba(255, 77, 77, 0.15);
       border: 1px solid rgba(255, 77, 77, 0.3);
       padding: 4px 10px; border-radius: 20px;
       box-shadow: 0 0 12px rgba(255, 77, 77, 0.3);
@@ -87,15 +82,17 @@
     }
     .h-text { font-size: 11px; font-weight: 700; color: var(--accent-red); font-family: 'Rajdhani'; letter-spacing: 0.8px; text-transform: uppercase; }
 
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
     .video-wrapper {
       margin-top: 60px;
       width: 100%; position: relative;
       background: #000;
-      box-shadow: 0 18px 50px rgba(0,0,0,0.9); 
-      border-bottom-left-radius: 15px; 
+      box-shadow: 0 18px 50px rgba(0,0,0,0.9);
+      border-bottom-left-radius: 15px;
       border-bottom-right-radius: 15px;
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.02); 
+      border: 1px solid rgba(255,255,255,0.02);
     }
     .video-container {
       width: 100%; aspect-ratio: 16/9;
@@ -109,116 +106,66 @@
     .video-bar { 
       height: 4px;
       width: 100%; 
-      background: linear-gradient(90deg, transparent 10%, #FFD700, #e6c200, transparent 90%); 
+      background: linear-gradient(90deg, transparent 10%, #FFD700, #e6c200, transparent 90%);
       opacity: 0.7; 
       box-shadow: 0 0 12px var(--gold-glow);
     }
 
     .ticker-wrap {
-      background: var(--bg-card); 
+      background: var(--bg-card);
       height: 35px;
       overflow: hidden;
       display: flex; align-items: center; border-bottom: 1px solid var(--border-color);
       position: relative;
       padding: 0 12px;
-      box-shadow: inset 0 1px 3px rgba(0,0,0,0.5); 
     }
-    .ticker-wrap::before, .ticker-wrap::after {
-      content: ''; position: absolute; top: 0; bottom: 0; width: 35px; z-index: 2;
-      pointer-events: none;
-    }
-    .ticker-wrap::before { left: 0; background: linear-gradient(90deg, var(--bg-card) 20%, transparent); }
-    .ticker-wrap::after { right: 0; background: linear-gradient(-90deg, var(--bg-card) 20%, transparent); }
     
     .ticker-text {
-      color: var(--gold-main); font-weight: 600; font-family: 'Outfit'; font-size: 13px; 
+      color: var(--gold-main); font-weight: 600; font-family: 'Outfit'; font-size: 13px;
       letter-spacing: 0.8px; text-transform: uppercase;
-      white-space: nowrap; animation: scroll 20s linear infinite; 
+      white-space: nowrap; animation: scroll 20s linear infinite;
       padding-left: 100%;
-      text-shadow: 0 0 4px rgba(255,215,0,0.1);
     }
     @keyframes scroll { 100% { transform: translateX(-100%); } }
 
     .action-section { 
       padding: 25px 16px; 
-      max-width: 600px; 
+      max-width: 600px;
       margin: 0 auto;
     }
 
     .daily-views-card {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
-      border-radius: 15px; 
-      padding: 15px 20px; 
-      margin-bottom: 20px; 
+      border-radius: 15px;
+      padding: 15px 20px;
+      margin-bottom: 20px;
       display: flex; align-items: center; justify-content: space-between;
       box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      position: relative;
-      overflow: hidden;
     }
-    .daily-views-card::before {
-      content: '';
-      position: absolute;
-      top: -10px; left: -10px; width: 40px; height: 40px;
-      background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
-      pointer-events: none;
-      transform: rotate(45deg);
-    }
-    .daily-views-card:active { transform: translateY(1px); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
 
     .daily-views-card .icon { font-size: 18px; color: var(--gold-main); margin-right: 10px; }
-    .daily-views-card .text { 
-      flex-grow: 1;
-      font-size: 12px; 
-      color: var(--text-gray); 
-      text-transform: uppercase; 
-      letter-spacing: 0.7px; 
-      font-weight: 600;
-    }
-    .daily-views-card .value { 
-      font-size: 20px; 
-      font-weight: 700; 
-      color: var(--text-white); 
-      font-family: 'Rajdhani';
-    }
+    .daily-views-card .text { flex-grow: 1; font-size: 12px; color: var(--text-gray); text-transform: uppercase; font-weight: 600; }
+    .daily-views-card .value { font-size: 20px; font-weight: 700; color: var(--text-white); font-family: 'Rajdhani'; }
 
     .btn-group { display: flex; flex-direction: column; gap: 15px; }
 
     .btn-main {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 20px; 
-      border-radius: 14px; 
+      padding: 16px 20px;
+      border-radius: 14px;
       text-decoration: none;
-      background: linear-gradient(45deg, #FFD700, #ffc800); 
+      background: linear-gradient(45deg, #FFD700, #ffc800);
       box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
-      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
-      position: relative;
-      overflow: hidden;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .btn-main::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent 50%, rgba(255,255,255,0.1));
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-    .btn-main:active { 
-      transform: scale(0.98); 
-      box-shadow: 0 3px 10px rgba(255, 215, 0, 0.2); 
-    }
-    .btn-main:active::before { opacity: 1; }
+    .btn-main:active { transform: scale(0.98); }
     
     .btn-content { display: flex; align-items: center; gap: 12px; }
-    .btn-icon-circle { 
-      width: 36px; height: 36px; background: rgba(0,0,0,0.1); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; 
-      box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
-    }
-    .btn-icon-circle i { color: #000; font-size: 20px; margin-right: 1px; margin-top: 1px;} 
+    .btn-icon-circle { width: 36px; height: 36px; background: rgba(0,0,0,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .btn-icon-circle i { color: #000; font-size: 20px; } 
     
-    .btn-text h3 { margin: 0; color: #000; font-size: 15px; font-weight: 700; font-family: 'Rajdhani'; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-text h3 { margin: 0; color: #000; font-size: 15px; font-weight: 700; font-family: 'Rajdhani'; text-transform: uppercase; }
     .btn-text p { margin: 0; color: #333; font-size: 10px; font-weight: 600; text-transform: uppercase; }
     .btn-arrow { color: #000; font-size: 22px; }
 
@@ -229,17 +176,9 @@
       padding: 12px; border-radius: 12px;
       text-decoration: none;
       display: flex; align-items: center; justify-content: center; gap: 8px;
-      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.3);
-      backdrop-filter: blur(3px);
-    }
-    .btn-sec:active { 
-      background: #1a1a1a; 
-      transform: translateY(1px); 
-      box-shadow: 0 1px 5px rgba(0,0,0,0.15); 
     }
     .btn-sec i { font-size: 18px; color: #999; }
-    .btn-sec span { font-size: 12px; color: #ccc; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-sec span { font-size: 12px; color: #ccc; font-weight: 600; text-transform: uppercase; }
 
     .modal-overlay {
       position: fixed; inset: 0; background: rgba(0,0,0,0.98);
@@ -251,115 +190,34 @@
     .modal-box {
       width: 90%; max-width: 340px;
       background: linear-gradient(135deg, #151515, #080808);
-      border: 1px solid #333;
-      border-radius: 25px;
-      padding: 30px 25px;
-      text-align: center;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-      transform: scale(0.85); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid #333; border-radius: 25px; padding: 30px 25px; text-align: center;
     }
-    .modal-overlay.active .modal-box { transform: scale(1); }
 
-    .pop-icon { 
-      width: 60px; height: 60px; background: rgba(255, 215, 0, 0.15);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 18px;
-      box-shadow: 0 0 15px rgba(255,215,0,0.3);
-    }
-    .pop-icon i { font-size: 32px; color: var(--gold-main); text-shadow: 0 0 6px var(--gold-main); }
+    .pop-icon { width: 60px; height: 60px; background: rgba(255, 215, 0, 0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
+    .pop-icon i { font-size: 32px; color: var(--gold-main); }
     
-    .pop-title { 
-      color: #fff; font-size: 20px; font-weight: 800; margin: 0 0 8px; 
-      font-family: 'Rajdhani'; letter-spacing: 0.7px; text-transform: uppercase;
-    }
+    .pop-title { color: #fff; font-size: 20px; font-weight: 800; margin: 0 0 8px; font-family: 'Rajdhani'; text-transform: uppercase; }
     .pop-desc { color: #aaa; font-size: 13px; margin-bottom: 25px; line-height: 1.5; }
 
-    .pop-btn {
-      display: block; width: 100%; padding: 14px; border-radius: 12px;
-      text-decoration: none; font-weight: 700; font-size: 14px; 
-      transition: 0.2s ease; cursor: pointer;
-      text-transform: uppercase; letter-spacing: 0.5px;
-    }
-    .pb-join { 
-      background: var(--gold-main); color: #000; margin-bottom: 10px; 
-      box-shadow: 0 4px 15px rgba(255,215,0,0.3); 
-    }
-    .pb-join:active { background: #e6c200; transform: translateY(1px); box-shadow: 0 2px 8px rgba(255,215,0,0.2); }
-
-    .pb-close { 
-      background: transparent; color: #777; border: 1px solid #3a3a3a; 
-    }
-    .pb-close:active { background: #222; color: #ccc; border-color: #444; transform: translateY(1px); }
+    .pop-btn { display: block; width: 100%; padding: 14px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 14px; text-transform: uppercase; }
+    .pb-join { background: var(--gold-main); color: #000; margin-bottom: 10px; }
+    .pb-close { background: transparent; color: #777; border: 1px solid #3a3a3a; }
 
     .sidebar {
       position: fixed; left: -100%; top: 0; width: 280px; height: 100%;
       background: linear-gradient(180deg, #181818, #050505);
       z-index: 5000; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       border-right: 1px solid #282828;
-      box-shadow: 6px 0 25px rgba(0,0,0,0.7);
     }
     .sidebar.open { left: 0; }
     .sb-header { padding: 30px 25px; border-bottom: 1px solid #282828; background: #0e0e0e; }
-    .sb-logo { 
-      font-family: 'Rajdhani'; font-size: 24px; font-weight: 800; color: #fff; 
-      letter-spacing: 1.5px;
-      text-shadow: 0 0 10px rgba(255,215,0,0.2);
-    }
+    .sb-logo { font-family: 'Rajdhani'; font-size: 24px; font-weight: 800; color: #fff; letter-spacing: 1.5px; }
     .sb-logo span { color: var(--gold-main); }
 
-    .sb-link {
-      display: flex; align-items: center; gap: 16px; padding: 18px 25px;
-      color: #b0b0b0; text-decoration: none; font-size: 14px; font-weight: 500;
-      transition: 0.2s ease; border-bottom: 1px solid #1f1f1f;
-      text-transform: uppercase; letter-spacing: 0.5px;
-    }
-    .sb-link:last-child { border-bottom: none; }
-    .sb-link:active { 
-      background: #202020; color: var(--gold-main); 
-      transform: translateX(5px);
-    }
-    .sb-link i { color: #777; font-size: 20px; transition: 0.2s; }
-    .sb-link:active i { color: var(--gold-main); }
+    .sb-link { display: flex; align-items: center; gap: 16px; padding: 18px 25px; color: #b0b0b0; text-decoration: none; font-size: 14px; text-transform: uppercase; border-bottom: 1px solid #1f1f1f; }
     
-    .overlay { 
-      position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 4999; 
-      opacity: 0; pointer-events: none; transition: 0.3s ease; 
-    }
+    .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 4999; opacity: 0; pointer-events: none; transition: 0.3s ease; }
     .overlay.active { opacity: 1; pointer-events: auto; }
-
-    @keyframes blink { 
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.6; transform: scale(1.1); }
-    }
-
-    @media (min-width: 768px) {
-      header { padding: 0 30px; height: 70px; }
-      .logo-text { font-size: 24px; }
-      .h-text { font-size: 12px; }
-      .video-wrapper { margin-top: 70px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; }
-      .ticker-wrap { height: 40px; padding: 0 20px; }
-      .ticker-text { font-size: 14px; }
-      .action-section { padding: 35px 25px; max-width: 650px; }
-      .daily-views-card { padding: 18px 25px; margin-bottom: 25px; }
-      .daily-views-card .icon { font-size: 20px; }
-      .daily-views-card .text { font-size: 13px; }
-      .daily-views-card .value { font-size: 24px; }
-      .btn-main { padding: 18px 25px; border-radius: 16px; }
-      .btn-icon-circle { width: 40px; height: 40px; }
-      .btn-icon-circle i { font-size: 22px; }
-      .btn-text h3 { font-size: 16px; }
-      .btn-text p { font-size: 11px; }
-      .btn-arrow { font-size: 24px; }
-      .btn-secondary-grid { gap: 20px; }
-      .btn-sec { padding: 14px; border-radius: 14px; }
-      .btn-sec i { font-size: 20px; }
-      .btn-sec span { font-size: 13px; }
-      .sidebar { width: 320px; }
-      .sb-header { padding: 35px 30px; }
-      .sb-logo { font-size: 26px; }
-      .sb-link { padding: 20px 30px; font-size: 15px; }
-      .sb-link i { font-size: 22px; }
-    }
   </style>
 </head>
 <body>
@@ -368,7 +226,7 @@
     <div class="modal-box">
       <div class="pop-icon"><i class="material-icons">telegram</i></div>
       <div class="pop-title">Join for Backup Links!</div>
-      <div class="pop-desc">Don't miss a single ball. Join our official channel for HD links and live updates.</div>
+      <div class="pop-desc">Don't miss a single ball. Join CRICKET SUPERFANS for HD links and live updates.</div>
       <a href="#" id="pop-link" class="pop-btn pb-join">Join Telegram Channel</a>
       <button class="pop-btn pb-close" onclick="closePopup()">I'm already in</button>
     </div>
@@ -377,7 +235,7 @@
   <header>
     <div class="menu-icon material-icons" onclick="toggleMenu()">notes</div>
     <div class="logo-container">
-      <span class="logo-text">CRICKET <span> SUPER FANS</span></span>
+      <span class="logo-text">CRICKET <span> SUPERFANS</span></span>
     </div>
     <div class="header-live">
       <div class="h-dot"></div> <span class="h-text">LIVE</span>
@@ -386,10 +244,9 @@
 
   <div class="sidebar" id="sidebar">
     <div class="sb-header">
-      <div class="sb-logo">CRICKET<span>SUPER FANS</span></div>
+      <div class="sb-logo">CRICKET<span>SUPERFANS</span></div>
     </div>
     <a href="#" id="side-tg" class="sb-link"><i class="material-icons">send</i> Join Telegram</a>
-    <a href="#" id="side-instagram" class="sb-link"><i class="material-icons">support_agent</i> Customer Support</a>
     <a href="javascript:location.reload()" class="sb-link"><i class="material-icons">refresh</i> Refresh Page</a>
     <a href="javascript:sharePage()" class="sb-link"><i class="material-icons">share</i> Share App</a>
   </div>
@@ -404,7 +261,7 @@
 
   <div class="ticker-wrap">
     <div class="ticker-text">
-       WELCOME TO CRICKET SUPER FANS 🏏 | JOIN TELEGRAM FOR MORE LINKS 🔗 | SHARE THIS LINK WITH FRIENDS 🔥 | NO BUFFERING HD STREAM
+       WELCOME TO CRICKET SUPERFANS 🏏 | JOIN TELEGRAM FOR MORE LINKS 🔗 | SHARE THIS LINK WITH FRIENDS 🔥 | NO BUFFERING HD STREAM
     </div>
   </div>
 
@@ -413,7 +270,7 @@
     <div class="daily-views-card">
       <i class="material-icons icon">bar_chart</i>
       <span class="text">Daily Views</span>
-      <span class="value" id="total-views-count">...</span>
+      <span class="value" id="total-views-count">7,482</span>
     </div>
 
     <div class="btn-group">
@@ -439,20 +296,17 @@
         </a>
       </div>
     </div>
-
   </div>
 
   <script>
     // ================= CONFIG =================
-    const WEBSITE_ID = "channel_super_fans"; 
+    const WEBSITE_ID = "cricket_superfans_live";
     const TELEGRAM_LINK = "https://t.me/+9eqdUpSA22FmMTFl";
-    const INSTAGRAM_LINK = "https://www.instagram.com/cricket_yoddha?igsh=MWpoZDltdjZzYnRncw=="; 
     // ==========================================
 
     document.getElementById('pop-link').href = TELEGRAM_LINK;
     document.getElementById('side-tg').href = TELEGRAM_LINK;
     document.getElementById('main-btn').href = TELEGRAM_LINK;
-    document.getElementById('side-instagram').href = INSTAGRAM_LINK;
 
     function toggleMenu() {
       document.getElementById('sidebar').classList.toggle('open');
@@ -460,9 +314,6 @@
     }
 
     window.onload = () => {
-      // Fake view counter for aesthetics since Firebase is not initialized
-      document.getElementById('total-views-count').innerText = Math.floor(Math.random() * (9500 - 5000) + 5000);
-      
       setTimeout(() => {
         if(!sessionStorage.getItem('pop_shown_' + WEBSITE_ID)) {
           document.getElementById('popup').classList.add('active');
@@ -477,15 +328,11 @@
 
     async function sharePage() {
       if(navigator.share) {
-        try {
-          await navigator.share({
-            title: 'Watch Live Cricket HD', 
-            text: 'Watch Live Cricket HD without buffering on Cricket Super Fans!', 
-            url: window.location.href
-          });
-        } catch (err) {}
-      } else {
-        alert("Sharing not supported on this browser. Copy the URL to share!");
+        await navigator.share({
+          title:'Watch Live Cricket HD', 
+          text: 'Watch Live Cricket HD on Cricket Superfans!', 
+          url: window.location.href
+        });
       }
     }
   </script>
